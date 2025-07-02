@@ -9,6 +9,8 @@ rough info / example on how to run delta.chat desktop within docker as a web app
 
 ## seriously, this is full of caveats
 
+- WARNING: this approach requires a patch to the main delta.chat code to allow non-localhost use -- this is unwise
+  - you *must* adjust `base_url.patch` for your deployment for things to work properly
 - WARNING: the data folder needs to be a volume *and* have a certificate stored in a sub-directory named `certificate`
 - WARNING: the `.env` volume below is a *file* -- see the main delta.chat desktop github repo for an example
 - NOTE: An auto-generated cert is stored at `/opt/deltachat-certificate` in the image as part of the build -- copy this to `/opt/deltachat-desktop/packages/target-browser/data/certificate` to use

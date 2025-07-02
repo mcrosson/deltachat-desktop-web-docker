@@ -23,8 +23,10 @@ RUN apk update && apk add git curl \
 WORKDIR /opt/deltachat-desktop/packages/target-browser
 
 COPY --from=certgen /opt/deltachat-certificate/ /opt/deltachat-certificate/
+COPY base_url.patch /opt/deltachat-base_url.patch
 
-RUN pnpm install \
+RUN git apply /opt/deltachat-base_url.patch \
+    && pnpm install \
     && pnpm build
 
 CMD ["pnpm", "run", "start"]
